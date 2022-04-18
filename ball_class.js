@@ -1,5 +1,6 @@
 const canvas = document.getElementById("canvas");
 let n = 10; // 10 шариков
+let speed = 1;
 
 // класс для шариков
 class Ball {
@@ -7,8 +8,8 @@ class Ball {
     this.context = canvas.getContext("2d");
     this.x = x;
     this.y = y;
-    this.xSpeed = Math.floor(Math.random() * 10);
-    this.ySpeed = Math.floor(Math.random() * 10);
+    this.xSpeed = Math.floor(Math.random() * speed);
+    this.ySpeed = Math.floor(Math.random() * speed);
     this.width = canvas.width;
     this.height = canvas.height;
     this.colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"];
@@ -82,10 +83,12 @@ class BallsGame {
 
 let balls = [];
 const ballsGame = new BallsGame(balls, canvas);
-function setAmount() {
+
+function startGame() {
   balls.length = 0;
   ballsGame.clear();
   n = Number(document.getElementById("amount").value);
+  speed = Number(document.getElementById("speed").value);
 
   for (let i = 0; i < n; i++) {
     balls[i] = new Ball(canvas);
